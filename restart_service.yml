@@ -1,0 +1,8 @@
+- hosts: myvms
+  remote_user: superuser
+  gather_facts: no
+  tasks:
+          - name: start some service
+            service:
+              name: some_service
+              state: restarted
