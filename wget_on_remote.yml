@@ -1,0 +1,8 @@
+- hosts: myvms
+  remote_user: superuser
+  gather_facts: no
+  tasks:
+          - name: Download foo.file
+            get_url:
+              url: https://www.foo.com/foo.file
+              dest: /some/path/on/remote
