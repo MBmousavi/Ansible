@@ -1,0 +1,16 @@
+- hosts: elk
+  remote_user: superuser
+  become_method: sudo
+  gather_facts: no
+  tasks:
+          - name: Update config file.
+            lineinfile:
+               path: /etc/logstash/logstash.yml
+               #regexp: 'bulk_max_size:'
+               #line: '  bulk_max_size: 1024'
+               regexp: 'pipeline.batch.size:'
+               line: 'pipeline.batch.size: 1024'
+            notify: Restart logstash
+  handlers:
+          - name: Restart logstash
+            command: sudo service logstash restart
