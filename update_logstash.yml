@@ -1,0 +1,12 @@
+- hosts: elk
+  remote_user: superuser
+  gather_facts: no
+  tasks:
+          - name: copy logstash configs on ELK Servers
+            copy:
+             src:  /some/path/on/source/logstash/
+             dest: /etc/logstash/conf.d/
+            notify: Restart Logstash
+  handlers:
+          - name: Restart Logstash
+            command: sudo service logstash restart
