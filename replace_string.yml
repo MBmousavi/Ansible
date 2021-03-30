@@ -1,0 +1,15 @@
+- hosts: myvms
+  remote_user: superuser
+  gather_facts: no
+  tasks:
+          - name: Update config file.
+            replace:
+               path: /etc/some_service/config.yml
+               regexp: '1.1.1.1'
+               replace: '2.2.2.2'
+            notify: Restart some_service
+  handlers:
+           - name: Restart some_service
+             service:
+                 name: some_service
+                 state: restarted
