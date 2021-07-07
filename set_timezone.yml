@@ -1,0 +1,8 @@
+- hosts: myhosts
+  remote_user: remote_user
+  become_method: sudo
+  gather_facts: no
+  tasks:
+          - name: Set Timezone to Asia/Tehran
+            timezone:
+              name: Asia/Tehran
