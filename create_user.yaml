@@ -1,0 +1,21 @@
+---
+- hosts: all
+  gather_facts: false
+  tasks:
+  - name: "Create group"
+    ansible.builtin.group:
+      name: user
+      state: present
+  - name: "Create a login user"
+    user:
+      createhome: true
+      groups:
+        - user
+        - sudo
+      home: /home/user
+      name: xaas
+      password: "{{ 'PASSWORD' | password_hash('sha512') }}"
+      shell: /bin/bash
+      state: present
+      system: false
+
