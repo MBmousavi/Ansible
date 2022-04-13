@@ -13,7 +13,7 @@
         - user
         - sudo
       home: /home/user
-      name: xaas
+      name: user
       password: "{{ 'PASSWORD' | password_hash('sha512') }}"
       shell: /bin/bash
       state: present
